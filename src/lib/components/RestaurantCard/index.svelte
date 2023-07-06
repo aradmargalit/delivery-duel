@@ -2,10 +2,14 @@
 	import type { Restaurant } from '../../../types/restaurant';
 
 	export let restaurant: Restaurant;
+	const { imageUrl: src, title } = restaurant;
 </script>
 
 <div
-	class="min-w-fit flex h-40 w-1/4 items-center justify-center rounded-lg border-4 border-gray-500 bg-gray-200 p-1"
+	class="flex h-48 w-full flex-col items-center justify-center rounded-lg border-4 border-gray-500 bg-gray-200 md:w-1/4"
 >
-	<p>{restaurant.title}</p>
+	<img {src} alt="restaurant" class="w-full overflow-hidden object-cover" />
+	<div class="flex h-24 items-center justify-center">
+		<h1 class="font-bold">{title}</h1>
+	</div>
 </div>
