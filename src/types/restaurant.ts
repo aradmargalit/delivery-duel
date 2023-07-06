@@ -3,4 +3,5 @@ export type Restaurant = {
 
 	// TODO: replace with dynamic fetch
 	imageUrl: string;
+	cuisine: string;
 };

@@ -1,18 +1,17 @@
 <script lang="ts">
 	import RestaurantCard from '$lib/components/RestaurantCard/index.svelte';
+	import { duel } from '$lib/stores/duel';
 	import type { Restaurant } from '../types/restaurant';
 
-	const restaurants: Restaurant[] = [
-		{
-			title: 'Thai Fix',
-			imageUrl:
-				'https://static-content.owner.com/brands/funnel/hero-background-images/teuDydnBHKyWhSCc4b5kuQBq.png?v=7370490082&w=3840&q=80&auto=format'
-		}
-	];
+	let remaining: Restaurant[];
+
+	duel.subscribe((value) => {
+		remaining = value.remaining;
+	});
 </script>
 
 <main>
-	{#each restaurants as restaurant}
+	{#each remaining as restaurant}
 		<RestaurantCard {restaurant} />
 	{/each}
 </main>
