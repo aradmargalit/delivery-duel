@@ -8,7 +8,7 @@ export const getRestaurantOptions = (): Restaurant[] => [
 		cuisine: 'Thai'
 	},
 	{
-		title: 'The Strand',
+		title: 'The Stand',
 		imageUrl:
 			'https://lh3.googleusercontent.com/p/AF1QipOvhwkOaO4VHU8R5hJnza9YmoYes_2CiMzW3Sdu=s1360-w1360-h1020',
 		cuisine: 'Burgers'

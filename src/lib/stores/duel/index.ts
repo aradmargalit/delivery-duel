@@ -12,17 +12,30 @@ export type DuelState = {
 	winner: Restaurant | null;
 };
 
-function createDuel() {
-	const restaurantOptions = getRestaurantOptions();
-	const all = [...restaurantOptions];
-	let remaining = [...restaurantOptions];
-
-	// TODO: DRY
+function pickNewDuelists(options: Restaurant[]): {
+	first: Restaurant,
+	second: Restaurant,
+	remaining: Restaurant[]
+} {
+	let remaining = options;
 	const first = selectRandom(remaining);
 	remaining = removeItem(remaining, first);
 	const second = selectRandom(remaining);
 	// Add back first, since it wasn't chosen yet
 	remaining = [...remaining, first];
+
+	return {
+		remaining,
+		first,
+		second
+	}
+}
+
+function createDuel() {
+	const restaurantOptions = getRestaurantOptions();
+	const all = [...restaurantOptions];
+
+	const { first, second, remaining } = pickNewDuelists(all);
 
 	const initialState: DuelState = {
 		all,
@@ -41,11 +54,9 @@ function createDuel() {
 			let remaining = removeItem(state.remaining, toRemove);
 
 			// pick a new first and second
-			const first = selectRandom(remaining);
-			remaining = removeItem(remaining, first);
-			const second = selectRandom(remaining);
-			// Add back first, since it wasn't chosen yet
-			remaining = [...remaining, first];
+			const { first, second, remaining: newRemaining } = pickNewDuelists(remaining);
+			remaining = newRemaining;
+			
 
 			// if remaining is less than 2, the game is over
 			if (remaining.length === 1) {
