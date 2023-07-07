@@ -9,6 +9,7 @@ export type DuelState = {
 	remaining: Restaurant[];
 	first: Restaurant;
 	second: Restaurant;
+	winner: Restaurant | null;
 };
 
 function createDuel() {
@@ -27,10 +28,11 @@ function createDuel() {
 		all,
 		remaining,
 		first,
-		second
+		second,
+		winner: null
 	};
 
-	const { subscribe, update } = writable(initialState);
+	const { subscribe, update, set } = writable(initialState);
 
 	function selectRestaurant(selected: Restaurant) {
 		update((state) => {
@@ -45,6 +47,14 @@ function createDuel() {
 			// Add back first, since it wasn't chosen yet
 			remaining = [...remaining, first];
 
+			// if remaining is less than 2, the game is over
+			if (remaining.length === 1) {
+				return {
+					...state,
+					winner: remaining[0]
+				};
+			}
+
 			return {
 				...state,
 				remaining,
@@ -58,7 +68,8 @@ function createDuel() {
 		subscribe,
 		select: (selected: Restaurant) => {
 			return selectRestaurant(selected);
-		}
+		},
+		reset: () => set(initialState)
 	};
 }
 

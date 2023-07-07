@@ -6,6 +6,6 @@
 	export let restaurant: Restaurant;
 </script>
 
-<button on:click={() => duel.select(restaurant)}>
+<button on:click={() => duel.select(restaurant)} class="">
 	<RestaurantCard {restaurant} />
 </button>
