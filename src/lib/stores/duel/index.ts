@@ -15,9 +15,8 @@ export type DuelState = {
 
 
 function createDuel() {
-	const restaurantOptions = getRestaurantOptions();
-	const all = [...restaurantOptions];
-
+	const all = getRestaurantOptions();
+	// Pick our first two duelists
 	const { first, second, remaining } = pickNewDuelists(all);
 
 	const initialState: DuelState = {
@@ -39,9 +38,8 @@ function createDuel() {
 			// pick a new first and second
 			const { first, second, remaining: newRemaining } = pickNewDuelists(remaining);
 			remaining = newRemaining;
-			
 
-			// if remaining is less than 2, the game is over
+			// if remaining is 1, the game is over
 			if (remaining.length === 1) {
 				return {
 					...state,
