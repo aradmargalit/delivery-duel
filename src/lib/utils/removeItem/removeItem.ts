@@ -1,3 +1,3 @@
 export function removeItem<T>(arr: T[], item: T) {
-	return arr.filter((x) => x !== item);
+  return arr.filter((x) => x !== item);
 }
