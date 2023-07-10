@@ -8,7 +8,7 @@
 <main>
   <div class="flex flex-col items-center justify-center">
     {#if !$duel.winner}
-      <p>Choose which looks better...</p>
+      <p class="mb-5">Choose which looks better...</p>
       <RestaurantChoice restaurant={$duel.first} />
       <p class="mb-5">vs ...</p>
       <RestaurantChoice restaurant={$duel.second} />

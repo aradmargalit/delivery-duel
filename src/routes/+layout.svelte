@@ -2,8 +2,11 @@
   import '../app.css';
 </script>
 
-<main class="p-5">
-  <slot />
+<main>
+  <header class="h-8 w-full border-b-4 border-b-orange-800 bg-blue-200 pl-2">
+    <strong>Delivery Duel</strong>
+  </header>
+  <div class="p-5"><slot /></div>
 </main>
 
 <style lang="postcss">
