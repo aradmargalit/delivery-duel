@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
 import type { Restaurant } from '../../../types/restaurant';
 import { getRestaurantOptions } from '$lib/config/restaurantOptions';
-import { selectRandom } from '$lib/utils/selectRandom/selectRandom';
 import { removeItem } from '$lib/utils/removeItem/removeItem';
+import { pickNewDuelists } from './pickNewDuelists';
 
 export type DuelState = {
 	all: Restaurant[];
@@ -12,24 +12,7 @@ export type DuelState = {
 	winner: Restaurant | null;
 };
 
-function pickNewDuelists(options: Restaurant[]): {
-	first: Restaurant,
-	second: Restaurant,
-	remaining: Restaurant[]
-} {
-	let remaining = options;
-	const first = selectRandom(remaining);
-	remaining = removeItem(remaining, first);
-	const second = selectRandom(remaining);
-	// Add back first, since it wasn't chosen yet
-	remaining = [...remaining, first];
 
-	return {
-		remaining,
-		first,
-		second
-	}
-}
 
 function createDuel() {
 	const restaurantOptions = getRestaurantOptions();
