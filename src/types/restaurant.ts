@@ -1,7 +1,7 @@
 export type Restaurant = {
-	title: string;
+  title: string;
 
-	// TODO: replace with dynamic fetch
-	imageUrl: string;
-	cuisine: string;
+  // TODO: replace with dynamic fetch
+  imageUrl: string;
+  cuisine: string;
 };
