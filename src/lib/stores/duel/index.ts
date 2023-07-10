@@ -12,8 +12,6 @@ export type DuelState = {
 	winner: Restaurant | null;
 };
 
-
-
 function createDuel() {
 	const all = getRestaurantOptions();
 	// Pick our first two duelists

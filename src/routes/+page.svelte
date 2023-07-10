@@ -10,7 +10,7 @@
 		{#if !$duel.winner}
 			<p>Choose which looks better...</p>
 			<RestaurantChoice restaurant={$duel.first} />
-			<p class="mb-5"> vs ...</p>
+			<p class="mb-5">vs ...</p>
 			<RestaurantChoice restaurant={$duel.second} />
 		{:else}
 			<p>Winner!</p>
