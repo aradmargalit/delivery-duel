@@ -3,10 +3,11 @@
   import LocationInput from '$lib/components/LocationInput/index.svelte';
 
   import { locationState } from '$lib/stores/location';
-  let hasLocation = false;
+  import { encodeLocationAsParams } from '$lib/utils/encodeLocationAsParams';
+  let locationString = '';
 
   locationState.subscribe((v) => {
-    hasLocation = Boolean(v.coordinates || v.manualLocation);
+    locationString = encodeLocationAsParams({coordinates: $locationState.coordinates, manualLocation: $locationState.manualLocation}).toString();
   });
 </script>
 
@@ -18,7 +19,7 @@
       <LocationInput />
     </div>
     <div class="mt-5">
-      <button disabled={!hasLocation} on:click={() => goto('/duel')}>start duel!</button>
+      <button disabled={!locationString} on:click={() => goto(`/duel?${locationString}`)}>start duel!</button>
     </div>
   </div>
 </main>

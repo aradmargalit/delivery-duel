@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request';
-import { client } from '../client.server';
+import { client } from '../client';
 
 const searchRestaurants = gql`
   {
@@ -14,7 +14,7 @@ const searchRestaurants = gql`
 
 export async function fetchRestaurants() {
   try {
-    return client.request(searchRestaurants);
+    // return client.request(searchRestaurants);
   } catch (e) {
     console.error(e);
   }
