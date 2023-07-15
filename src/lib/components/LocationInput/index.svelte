@@ -29,8 +29,12 @@
   <p class="mt-5">{coordinateState}</p>
   <div class="field-row">
     <label for="locationInput">Enter your location</label>
-    <input bind:value={$locationState.manualLocation} id="locationInput" type="text" placeholder="Irvine, CA" />
-    
+    <input
+      bind:value={$locationState.manualLocation}
+      id="locationInput"
+      type="text"
+      placeholder="Irvine, CA"
+    />
   </div>
   {#if locationError}
     <p class="mt-5 text-red-500">Could not find your location: {locationError}</p>

@@ -1,6 +1,6 @@
 <script>
   import '../app.css';
-  import '98.css'
+  import '98.css';
 </script>
 
 <main>
