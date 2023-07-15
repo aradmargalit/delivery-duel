@@ -7,7 +7,10 @@
   let locationString = '';
 
   locationState.subscribe((v) => {
-    locationString = encodeLocationAsParams({coordinates: $locationState.coordinates, manualLocation: $locationState.manualLocation}).toString();
+    locationString = encodeLocationAsParams({
+      coordinates: $locationState.coordinates,
+      manualLocation: $locationState.manualLocation
+    }).toString();
   });
 </script>
 
@@ -19,7 +22,9 @@
       <LocationInput />
     </div>
     <div class="mt-5">
-      <button disabled={!locationString} on:click={() => goto(`/duel?${locationString}`)}>start duel!</button>
+      <button disabled={!locationString} on:click={() => goto(`/duel?${locationString}`)}
+        >start duel!</button
+      >
     </div>
   </div>
 </main>

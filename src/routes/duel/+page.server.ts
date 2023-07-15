@@ -1,28 +1,20 @@
 import type { PageServerLoad } from './$types';
 import { fetchRestaurants } from '$lib/gql/queries/searchRestaurants';
+import { redirect } from '@sveltejs/kit';
 
-export const load = (async ({ params }) => {
-  const restaurants = await fetchRestaurants();
+export const load = (async ({ url }) => {
+  const searchParams = url.searchParams;
+  if (
+    !searchParams ||
+    (!searchParams.has('manualLocation') && (!searchParams.has('lat') || !searchParams.has('lon')))
+  ) {
+    // We can't start a duel, go back
+    console.log('redirecting...');
+    throw redirect(307, '/');
+  }
 
-  return {
-    restaurants
-  };
+  const restaurants = await fetchRestaurants(searchParams);
+  console.log({restaurants})
+
+  return {};
 }) satisfies PageServerLoad;
-
-// export const actions = {
-// 	default: async ({ request, cookies }) => {
-// 		const data = await request.formData();
-
-// 		if (data.get('passphrase') === 'TODO') {
-// 			cookies.set('allowed', 'true', {
-// 				path: '/'
-// 			});
-
-// 			throw redirect(303, '/welcome');
-// 		}
-
-// 		return fail(403, {
-// 			incorrect: true
-// 		});
-// 	}
-// };

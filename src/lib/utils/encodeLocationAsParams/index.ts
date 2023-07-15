@@ -1,9 +1,15 @@
-import type { Coordinate } from "../../../types/coordinate";
+import type { Coordinate } from '../../../types/coordinate';
 
 /**
  * Encodes the user's location as URL search params
  */
-export function encodeLocationAsParams({coordinates, manualLocation}: {coordinates?: Coordinate; manualLocation?: string}): URLSearchParams {
+export function encodeLocationAsParams({
+  coordinates,
+  manualLocation
+}: {
+  coordinates?: Coordinate;
+  manualLocation?: string;
+}): URLSearchParams {
   const params = new URLSearchParams();
   // prefer manualLocation to coordinates in case user is on VPN or otherwise we get it wrong
   if (manualLocation) {
