@@ -15,7 +15,7 @@ export type LocationState = {
 function createLocationState() {
   const manualLocation = '';
   const initialState: LocationState = {
-    manualLocation
+    manualLocation,
   }
   
   const { subscribe, set, update } = writable(initialState);
