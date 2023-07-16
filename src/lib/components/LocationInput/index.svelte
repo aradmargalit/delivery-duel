@@ -11,11 +11,11 @@
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          coordinateState = '';
           locationState.setCoordinates({
             lat: position.coords.latitude,
             lon: position.coords.longitude
           });
-          coordinateState = '';
         },
         (positionError) => {
           locationError = positionError.message;
@@ -38,5 +38,9 @@
   </div>
   {#if locationError}
     <p class="mt-5 text-red-500">Could not find your location: {locationError}</p>
+  {:else if $locationState.coordinates}
+    <p class="mt-5 text-green-800">
+      Using your coordinates.<br />You can override with a manual location above.
+    </p>
   {/if}
 </div>
