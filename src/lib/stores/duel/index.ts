@@ -15,8 +15,8 @@ function createDuel() {
   const initialState: DuelState = {
     all: [],
     remaining: [],
-    first: { imageUrl: '', title: '' },
-    second: { imageUrl: '', title: '' },
+    first: { imageUrl: '', title: '', url: '' },
+    second: { imageUrl: '', title: '', url: '' },
     winner: null
   };
 

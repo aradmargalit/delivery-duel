@@ -28,6 +28,7 @@ export const load = (async ({ url }) => {
 function businessToRestaurant(business: Business): Restaurant {
   return {
     title: business.name,
-    imageUrl: business.photos.length ? business.photos[0] : ''
+    imageUrl: business.photos.length ? business.photos[0] : '',
+    url: business.url
   };
 }

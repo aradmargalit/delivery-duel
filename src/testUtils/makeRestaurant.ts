@@ -4,6 +4,7 @@ export function makeRestaurant(partial?: Partial<Restaurant>): Restaurant {
   return {
     imageUrl: 'foo.bar',
     title: 'Thai Fix',
+    url: 'https://foo.bar',
     ...partial
   };
 }

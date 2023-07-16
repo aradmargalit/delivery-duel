@@ -8,9 +8,8 @@
   <div class="title-bar w-full">
     <p class="title-bar-text">{restaurant.title}</p>
     <div class="title-bar-controls">
-      <button disabled aria-label="Minimize" />
-      <button disabled aria-label="Maximize" />
-      <button disabled aria-label="Close" />
+      <button aria-label="Site" on:click={() => window.open(restaurant.url, '_blank')}> Website </button>
+      <button disabled aria-label="Decorative close"/>
     </div>
   </div>
   <img src={restaurant.imageUrl} alt="restaurant" class="w-full overflow-hidden object-cover" />
