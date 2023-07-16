@@ -67,14 +67,11 @@ export async function fetchRestaurants(searchParams: URLSearchParams): Promise<R
     limit: RESULT_LIMIT,
     radius: SEARCH_RADIUS_METERS
   };
+  
   if (searchParams.has('manualLocation')) {
     const variables = { ...baseVariables, name: searchParams.get('manualLocation') };
 
-    try {
-      return client.request(searchByName, variables);
-    } catch (e) {
-      console.error(e);
-    }
+    return client.request(searchByName, variables);
   }
 
   const variables = {
@@ -82,13 +79,5 @@ export async function fetchRestaurants(searchParams: URLSearchParams): Promise<R
     latitude: searchParams.get('lat'),
     longitude: searchParams.get('lon')
   };
-  try {
-    return client.request(searchByCoords, variables);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return {
-    search: { business: [] }
-  };
+  return client.request(searchByCoords, variables);
 }
