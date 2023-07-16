@@ -12,7 +12,7 @@
         on:click={() => window.open('https://github.com/aradmargalit/delivery-duel', '_blank')}
         >GitHub</button
       >
-      <button aria-label="Maximize" on:click={() => document.documentElement.requestFullscreen()}/>
+      <button aria-label="Maximize" on:click={() => document.documentElement.requestFullscreen()} />
     </div>
   </header>
   <div class="p-5"><slot /></div>
@@ -20,6 +20,6 @@
 
 <style lang="postcss">
   :global(html) {
-    background-color: theme(colors.gray.400);
+    background-color: theme(colors.gray.300);
   }
 </style>
