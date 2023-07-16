@@ -20,8 +20,8 @@ const config: CodegenConfig = {
       preset: 'client',
       presetConfig: {
         // TODO: re-enable
-        fragmentMasking: false,
-      },
+        fragmentMasking: false
+      }
     },
     './graphql.schema.json': {
       plugins: ['introspection']
