@@ -1,12 +1,8 @@
 type Business {
-  """
-  Yelp alias of this business.
-  """
+  """Yelp alias of this business."""
   alias: String
 
-  """
-  Business attributes.
-  """
+  """Business attributes."""
   attributes: BusinessAttributes
 
   """
@@ -14,9 +10,7 @@ type Business {
   """
   categories: [Category]
 
-  """
-  The coordinates of this business.
-  """
+  """The coordinates of this business."""
   coordinates: Coordinates
 
   """
@@ -29,24 +23,16 @@ type Business {
   """
   distance: Float
 
-  """
-  Opening hours of the business.
-  """
+  """Opening hours of the business."""
   hours: [Hours]
 
-  """
-  Yelp ID of this business.
-  """
+  """Yelp ID of this business."""
   id: String
 
-  """
-  Whether business has been claimed by a business owner.
-  """
+  """Whether business has been claimed by a business owner."""
   is_claimed: Boolean
 
-  """
-  Whether business has been (permanently) closed.
-  """
+  """Whether business has been (permanently) closed."""
   is_closed: Boolean
 
   """
@@ -59,19 +45,13 @@ type Business {
   """
   messaging: BusinessMessaging
 
-  """
-  Name of this business.
-  """
+  """Name of this business."""
   name: String
 
-  """
-  Phone number of the business.
-  """
+  """Phone number of the business."""
   phone: String
 
-  """
-  URLs of up to three photos of the business.
-  """
+  """URLs of up to three photos of the business."""
   photos: [String]
 
   """
@@ -79,19 +59,13 @@ type Business {
   """
   price: String
 
-  """
-  Rating for this business (value ranges from 1, 1.5, ... 4.5, 5).
-  """
+  """Rating for this business (value ranges from 1, 1.5, ... 4.5, 5)."""
   rating: Float
 
-  """
-  Number of reviews for this business.
-  """
+  """Number of reviews for this business."""
   review_count: Int
 
-  """
-  Review snippets from the business.
-  """
+  """Review snippets from the business."""
   reviews(limit: Int, offset: Int): [Review]
 
   """
@@ -104,21 +78,15 @@ type Business {
   """
   transactions: Transactions
 
-  """
-  URL for business page on Yelp.
-  """
+  """URL for business page on Yelp."""
   url: String
 }
 
 type BusinessAttribute {
-  """
-  The machine-friendly name of this business attribute.
-  """
+  """The machine-friendly name of this business attribute."""
   name_code: String
 
-  """
-  The machine-friendly value of this business attribute.
-  """
+  """The machine-friendly value of this business attribute."""
   value_code: String
 }
 
@@ -133,9 +101,7 @@ type BusinessAttributes {
   """
   open_to_all: BusinessAttribute
 
-  """
-  Whether business is wheelchair accessible.
-  """
+  """Whether business is wheelchair accessible."""
   wheelchair_accessible: BusinessAttribute
 }
 
@@ -152,43 +118,29 @@ type BusinessMessaging {
 }
 
 type BusinessUser {
-  """
-  Name of the business user.
-  """
+  """Name of the business user."""
   name: String
 
-  """
-  URL of the business user's profile photo.
-  """
+  """URL of the business user's profile photo."""
   photo_url: String
 
-  """
-  Business role for the business user.
-  """
+  """Business role for the business user."""
   role: String
 }
 
 type Businesses {
-  """
-  A list of business Yelp finds based on the search criteria.
-  """
+  """A list of business Yelp finds based on the search criteria."""
   business: [Business]
 
-  """
-  Total number of businesses found.
-  """
+  """Total number of businesses found."""
   total: Int
 }
 
 type Categories {
-  """
-  The category objects.
-  """
+  """The category objects."""
   category: [Category]
 
-  """
-  Total number of categories.
-  """
+  """Total number of categories."""
   total: Int
 }
 
@@ -198,48 +150,32 @@ type Category {
   """
   alias: String
 
-  """
-  Countries for which this category is blacklisted.
-  """
+  """Countries for which this category is blacklisted."""
   country_blacklist: [Country]
 
-  """
-  Countries for which this category is whitelisted.
-  """
+  """Countries for which this category is whitelisted."""
   country_whitelist: [Country]
 
-  """
-  List of parent categories.
-  """
+  """List of parent categories."""
   parent_categories: [Category]
 
-  """
-  Title of a category for display purposes.
-  """
+  """Title of a category for display purposes."""
   title: String
 }
 
 type Coordinates {
-  """
-  The latitude of this business.
-  """
+  """The latitude of this business."""
   latitude: Float
 
-  """
-  The longitude of this business.
-  """
+  """The longitude of this business."""
   longitude: Float
 }
 
 type Country {
-  """
-  The ISO 3166-1 alpha-2 code for this country.
-  """
+  """The ISO 3166-1 alpha-2 code for this country."""
   code: String
 
-  """
-  Supported locales with this country.
-  """
+  """Supported locales with this country."""
   locales: [Locale]
 }
 
@@ -258,79 +194,49 @@ value as specified by
 scalar DateTime
 
 type Event {
-  """
-  Number of Yelp users attending this event.
-  """
+  """Number of Yelp users attending this event."""
   attending_count: String
 
-  """
-  The business tied to this event.
-  """
+  """The business tied to this event."""
   business: Business
 
-  """
-  The ID of the related business.
-  """
+  """The ID of the related business."""
   business_id: String
 
-  """
-  The category of this event.
-  """
+  """The category of this event."""
   category: String
 
-  """
-  Cost of attending this event.
-  """
+  """Cost of attending this event."""
   cost: Int
 
-  """
-  Maximum cost of this event.
-  """
+  """Maximum cost of this event."""
   cost_max: Int
 
-  """
-  Description excerpt of this event.
-  """
+  """Description excerpt of this event."""
   description: String
 
-  """
-  Yelp page of this event.
-  """
+  """Yelp page of this event."""
   event_site_url: String
 
-  """
-  Event id.
-  """
+  """Event id."""
   id: String
 
-  """
-  Yelp image url of this event.
-  """
+  """Yelp image url of this event."""
   image_url: String
 
-  """
-  Number of Yelp users interested in attending this event.
-  """
+  """Number of Yelp users interested in attending this event."""
   interested_count: String
 
-  """
-  Whether this event is canceled.
-  """
+  """Whether this event is canceled."""
   is_canceled: Boolean
 
-  """
-  Whether this event is free.
-  """
+  """Whether this event is free."""
   is_free: Boolean
 
-  """
-  Whether this event is created by a Yelp community manager.
-  """
+  """Whether this event is created by a Yelp community manager."""
   is_official: Boolean
 
-  """
-  Latitude of this event.
-  """
+  """Latitude of this event."""
   latitude: Float
 
   """
@@ -338,19 +244,13 @@ type Event {
   """
   location: Location
 
-  """
-  Longitude of this event.
-  """
+  """Longitude of this event."""
   longitude: Float
 
-  """
-  Name of this event.
-  """
+  """Name of this event."""
   name: String
 
-  """
-  URL to buy tickets for this event.
-  """
+  """URL to buy tickets for this event."""
   tickets_url: String
 
   """
@@ -365,14 +265,10 @@ type Event {
 }
 
 type Events {
-  """
-  List of events found matching search criteria.
-  """
+  """List of events found matching search criteria."""
   events: [Event]
 
-  """
-  Total number of events found.
-  """
+  """Total number of events found."""
   total: Int
 }
 
@@ -382,14 +278,10 @@ type Hours {
   """
   hours_type: String
 
-  """
-  Describes if the business is open now.
-  """
+  """Describes if the business is open now."""
   is_open_now: Boolean
 
-  """
-  The specific open hours and days for a business.
-  """
+  """The specific open hours and days for a business."""
   open: [OpenHours]
 }
 
@@ -399,9 +291,7 @@ type Language {
   """
   code: String
 
-  """
-  Supported locales with this language.
-  """
+  """Supported locales with this language."""
   locales: [Locale]
 }
 
@@ -411,41 +301,27 @@ type Locale {
   """
   code: String
 
-  """
-  The country component of this locale.
-  """
+  """The country component of this locale."""
   country: Country
 
-  """
-  The language component of this locale.
-  """
+  """The language component of this locale."""
   language: Language
 }
 
 type Location {
-  """
-  Street address of this business.
-  """
+  """Street address of this business."""
   address1: String
 
-  """
-  Street address of this business, continued.
-  """
+  """Street address of this business, continued."""
   address2: String
 
-  """
-  Street address of this business, continued.
-  """
+  """Street address of this business, continued."""
   address3: String
 
-  """
-  City of this business.
-  """
+  """City of this business."""
   city: String
 
-  """
-  ISO 3166-1 alpha-2 country code of this business.
-  """
+  """ISO 3166-1 alpha-2 country code of this business."""
   country: String
 
   """
@@ -453,20 +329,14 @@ type Location {
   """
   formatted_address: String
 
-  """
-  Postal code of this business.
-  """
+  """Postal code of this business."""
   postal_code: String
 
-  """
-  ISO 3166-2 (with a few exceptions) state code of this business.
-  """
+  """ISO 3166-2 (with a few exceptions) state code of this business."""
   state: String
 }
 
-"""
-An enumeration.
-"""
+"""An enumeration."""
 enum MatchThreshold {
   DEFAULT
   NONE
@@ -501,9 +371,7 @@ type PublicReviewResponse {
   """
   business_user: BusinessUser
 
-  """
-  Text of this public review response.
-  """
+  """Text of this public review response."""
   text: String
 
   """
@@ -513,19 +381,13 @@ type PublicReviewResponse {
 }
 
 type Query {
-  """
-  Load information about a specific business.
-  """
+  """Load information about a specific business."""
   business(
-    """
-    The Yelp ID for the business you want to load.
-    """
+    """The Yelp ID for the business you want to load."""
     id: String
   ): Business
 
-  """
-  Match detailed business location data to businesses on Yelp.
-  """
+  """Match detailed business location data to businesses on Yelp."""
   business_match(
     """
     Required. The first line of the business’s address. Maximum length is 64; only digits, letters, spaces, and ­’/#&,.: are allowed. Note that the empty string  is allowed; this will specifically match certain service businesses that have no street address.
@@ -557,9 +419,7 @@ type Query {
     """
     latitude: Float
 
-    """
-    Optional. The maximum number of businesses to return.
-    """
+    """Optional. The maximum number of businesses to return."""
     limit: Int = 3
 
     """
@@ -582,9 +442,7 @@ type Query {
     """
     phone: String
 
-    """
-    Optional. The postal code of the business. Maximum length is 12.
-    """
+    """Optional. The postal code of the business. Maximum length is 12."""
     postal_code: String
 
     """
@@ -609,19 +467,13 @@ type Query {
     locale: String = "en_US"
   ): Categories
 
-  """
-  Load information about a specific event.
-  """
+  """Load information about a specific event."""
   event(
-    """
-    The Yelp ID for the event you want to load.
-    """
+    """The Yelp ID for the event you want to load."""
     id: String
   ): Event
 
-  """
-  Search for events based on search parameters.
-  """
+  """Search for events based on search parameters."""
   event_search(
     """
     Optional. The category filter can be a list of comma delimited categories to get OR'd results that include the categories provided. See the list of categories.
@@ -663,9 +515,7 @@ type Query {
     """
     longitude: Float
 
-    """
-    Optional. Offset the list of returned events results by this amount.
-    """
+    """Optional. Offset the list of returned events results by this amount."""
     offset: Int
 
     """
@@ -689,9 +539,7 @@ type Query {
     start_date: Int
   ): Events
 
-  """
-  Search for businesses on Yelp by their phone number.
-  """
+  """Search for businesses on Yelp by their phone number."""
   phone_search(
     """
     Required. Phone number of the business you want to search for. It must start with + and include the country code, like +14159083801.
@@ -699,13 +547,9 @@ type Query {
     phone: String
   ): Businesses
 
-  """
-  Load reviews for a specific business.
-  """
+  """Load reviews for a specific business."""
   reviews(
-    """
-    The Yelp ID for the business you want to load.
-    """
+    """The Yelp ID for the business you want to load."""
     business: String
     limit: Int
 
@@ -716,13 +560,9 @@ type Query {
     offset: Int
   ): Reviews
 
-  """
-  Search for businesses on Yelp.
-  """
+  """Search for businesses on Yelp."""
   search(
-    """
-    Additional filters to restrict search results.
-    """
+    """Additional filters to restrict search results."""
     attributes: [String]
 
     """
@@ -756,9 +596,7 @@ type Query {
     """
     longitude: Float
 
-    """
-    Optional. Offset the list of returned business results by this amount.
-    """
+    """Optional. Offset the list of returned business results by this amount."""
     offset: Int
 
     """
@@ -801,9 +639,7 @@ type RestaurantReservations {
 }
 
 type Review {
-  """
-  Yelp ID of this review.
-  """
+  """Yelp ID of this review."""
   id: String
 
   """
@@ -811,51 +647,33 @@ type Review {
   """
   public_response: PublicReviewResponse
 
-  """
-  Rating of this review.
-  """
+  """Rating of this review."""
   rating: Int
 
-  """
-  Text excerpt of this review.
-  """
+  """Text excerpt of this review."""
   text: String
 
-  """
-  The time that the review was created in PST.
-  """
+  """The time that the review was created in PST."""
   time_created: String
 
-  """
-  URL of this review.
-  """
+  """URL of this review."""
   url: String
 
-  """
-  The user who wrote the review.
-  """
+  """The user who wrote the review."""
   user: User
 }
 
 type Reviews {
-  """
-  The business associated with the reviews
-  """
+  """The business associated with the reviews"""
   business: Business
 
-  """
-  A list of languages for which the business has at least one review.
-  """
+  """A list of languages for which the business has at least one review."""
   possible_languages: [Language]
 
-  """
-  The reviews objects.
-  """
+  """The reviews objects."""
   review: [Review]
 
-  """
-  Total number of reviews.
-  """
+  """Total number of reviews."""
   total: Int
 }
 
@@ -870,9 +688,7 @@ type SpecialHours {
   """
   end: String
 
-  """
-  Whether the business is closed on the indicated date.
-  """
+  """Whether the business is closed on the indicated date."""
   is_closed: Boolean
 
   """
@@ -887,30 +703,20 @@ type SpecialHours {
 }
 
 type Transactions {
-  """
-  Online reservations via Yelp Reservations.
-  """
+  """Online reservations via Yelp Reservations."""
   restaurant_reservations: RestaurantReservations
 }
 
 type User {
-  """
-  The User's ID, a 22 character string
-  """
+  """The User's ID, a 22 character string"""
   id: String
 
-  """
-  URL of the user's profile photo.
-  """
+  """URL of the user's profile photo."""
   image_url: String
 
-  """
-  Name of the user.
-  """
+  """Name of the user."""
   name: String
 
-  """
-  User's profile url
-  """
+  """User's profile url"""
   profile_url: String
 }
