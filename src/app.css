@@ -7,5 +7,9 @@
 }
 
 .title-bar, .window, button, input, label, option, select, table, textarea, ul.tree-view {
-  font-size: 12px !important;
+  font-size: 1rem !important;
+}
+
+p {
+  font-size: 1rem !important;
 }

@@ -40,6 +40,8 @@ export const load = (async ({ url }) => {
       throw redirect(307, '/no-matches-found');
     }
 
+    // temporarily fall back to no matches found if error
+    throw redirect(307, '/no-matches-found')
     console.error((e as Error).message);
     return { restaurants: [] };
   }
