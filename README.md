@@ -13,6 +13,14 @@ npm install
 npm run dev
 ```
 
+### GraphQL
+
+In order to generate types, you can run the codegen command.
+
+```sh
+YELP_GQL_API_KEY=yourToken npm run codegen
+```
+
 ## Deployment
 
 Deployed on Vercel on pushes to `main`.
