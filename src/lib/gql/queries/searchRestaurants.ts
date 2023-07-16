@@ -85,8 +85,8 @@ export async function fetchRestaurants(searchParams: URLSearchParams) {
 
   const variables = {
     ...baseVariables,
-    latitude: parseInt(searchParams.get('lat') ?? '0', 10),
-    longitude: parseInt(searchParams.get('lon') ?? '0', 10)
+    latitude: parseFloat(searchParams.get('lat') ?? '0'),
+    longitude: parseFloat(searchParams.get('lon') ?? '0')
   };
   return client.request(searchByCoords, variables);
 }
