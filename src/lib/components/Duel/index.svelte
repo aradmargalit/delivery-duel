@@ -15,9 +15,16 @@
       <RestaurantChoice restaurant={$duel.first} />
       <p class="mb-5">vs ...</p>
       <RestaurantChoice restaurant={$duel.second} />
-      <div class="mt-5 mb-5 field-row">
-        <label for="progress">Progress<br/> ({progress} / {$duel.all.length})</label>
-        <input id="progress" disabled type="range" min={0} max={$duel.all.length} value={progress} />
+      <div class="field-row mb-5 mt-5">
+        <label for="progress">Progress<br /> ({progress} / {$duel.all.length})</label>
+        <input
+          id="progress"
+          disabled
+          type="range"
+          min={0}
+          max={$duel.all.length}
+          value={progress}
+        />
       </div>
     {:else}
       <p>Winner!</p>

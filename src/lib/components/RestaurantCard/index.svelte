@@ -8,7 +8,9 @@
   <div class="title-bar w-full">
     <p class="title-bar-text">{restaurant.title}</p>
     <div class="title-bar-controls">
-      <button aria-label="Site" on:click={() => window.open(restaurant.url, '_blank')}> Website </button>
+      <button aria-label="Site" on:click={() => window.open(restaurant.url, '_blank')}>
+        Website
+      </button>
       <button disabled aria-label="Close" />
     </div>
   </div>

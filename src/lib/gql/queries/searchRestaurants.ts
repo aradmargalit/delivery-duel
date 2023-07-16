@@ -1,5 +1,5 @@
-import { gql } from 'graphql-request';
 import { client } from '../client';
+import { graphql } from '../../../__generated__/gql/gql';
 
 const SEARCH_RADIUS_METERS = 25_000; // about 15 miles
 const RESULT_LIMIT = 12;
@@ -11,14 +11,23 @@ export type Business = {
   photos: string[];
 };
 
-export type RestaurantResult = {
-  search: {
-    business: Business[];
-  };
-};
+// fragments are global, and codegen cannot parse types if they are interpolated
+// https://github.com/dotansimha/graphql-code-generator/issues/6808#issuecomment-939242951
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const searchResultsFragment = graphql(`
+  fragment SearchResults on Businesses {
+    total
+    business {
+      name
+      url
+      rating
+      photos
+    }
+  }
+`);
 
-const searchByName = gql`
-  query searchByName($name: String!, $radius: Float!, $limit: Int!) {
+const searchByName = graphql(`
+  query SearchByName($name: String!, $radius: Float!, $limit: Int!) {
     search(
       location: $name
       radius: $radius
@@ -28,18 +37,12 @@ const searchByName = gql`
       term: "dinner"
       attributes: ["restaurants_delivery"]
     ) {
-      total
-      business {
-        name
-        url
-        rating
-        photos
-      }
+      ...SearchResults
     }
   }
-`;
+`);
 
-const searchByCoords = gql`
+const searchByCoords = graphql(`
   query searchByCoords($longitude: Float!, $latitude: Float!, $radius: Float!, $limit: Int!) {
     search(
       longitude: $longitude
@@ -51,44 +54,28 @@ const searchByCoords = gql`
       term: "dinner"
       attributes: ["restaurants_delivery"]
     ) {
-      total
-      business {
-        name
-        url
-        rating
-        photos
-      }
+      ...SearchResults
     }
   }
-`;
+`);
 
-export async function fetchRestaurants(searchParams: URLSearchParams): Promise<RestaurantResult> {
+export async function fetchRestaurants(searchParams: URLSearchParams) {
   const baseVariables = {
     limit: RESULT_LIMIT,
     radius: SEARCH_RADIUS_METERS
   };
-  if (searchParams.has('manualLocation')) {
-    const variables = { ...baseVariables, name: searchParams.get('manualLocation') };
 
-    try {
-      return client.request(searchByName, variables);
-    } catch (e) {
-      console.error(e);
-    }
+  if (searchParams.has('manualLocation')) {
+    const name = searchParams.get('manualLocation') || '';
+    const variables = { ...baseVariables, name };
+
+    return client.request(searchByName, variables);
   }
 
   const variables = {
     ...baseVariables,
-    latitude: searchParams.get('lat'),
-    longitude: searchParams.get('lon')
+    latitude: parseInt(searchParams.get('lat') ?? '0', 10),
+    longitude: parseInt(searchParams.get('lon') ?? '0', 10)
   };
-  try {
-    return client.request(searchByCoords, variables);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return {
-    search: { business: [] }
-  };
+  return client.request(searchByCoords, variables);
 }
