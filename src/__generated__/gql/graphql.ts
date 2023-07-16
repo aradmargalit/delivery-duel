@@ -5,31 +5,27 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
-  [_ in K]?: never;
-};
-export type Incremental<T> =
-  | T
-  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /**
    * The `Date` scalar type represents a Date
    * value as specified by
    * [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
    */
-  Date: { input: any; output: any };
+  Date: { input: any; output: any; }
   /**
    * The `DateTime` scalar type represents a DateTime
    * value as specified by
    * [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
    */
-  DateTime: { input: any; output: any };
+  DateTime: { input: any; output: any; }
 };
 
 export type Business = {
@@ -79,6 +75,7 @@ export type Business = {
   /** URL for business page on Yelp. */
   url?: Maybe<Scalars['String']['output']>;
 };
+
 
 export type BusinessReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -317,9 +314,11 @@ export type Query = {
   search?: Maybe<Businesses>;
 };
 
+
 export type QueryBusinessArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 export type QueryBusiness_MatchArgs = {
   address1: Scalars['String']['input'];
@@ -337,15 +336,18 @@ export type QueryBusiness_MatchArgs = {
   state: Scalars['String']['input'];
 };
 
+
 export type QueryCategoriesArgs = {
   alias?: InputMaybe<Scalars['String']['input']>;
   country?: InputMaybe<Scalars['String']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
+
 export type QueryEventArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 export type QueryEvent_SearchArgs = {
   categories?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -363,9 +365,11 @@ export type QueryEvent_SearchArgs = {
   start_date?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
 export type QueryPhone_SearchArgs = {
   phone?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 export type QueryReviewsArgs = {
   business?: InputMaybe<Scalars['String']['input']>;
@@ -373,6 +377,7 @@ export type QueryReviewsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
+
 
 export type QuerySearchArgs = {
   attributes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -460,17 +465,7 @@ export type User = {
   profile_url?: Maybe<Scalars['String']['output']>;
 };
 
-export type SearchResultsFragment = {
-  __typename?: 'Businesses';
-  total?: number | null;
-  business?: Array<{
-    __typename?: 'Business';
-    name?: string | null;
-    url?: string | null;
-    rating?: number | null;
-    photos?: Array<string | null> | null;
-  } | null> | null;
-};
+export type SearchResultsFragment = { __typename?: 'Businesses', total?: number | null, business?: Array<{ __typename?: 'Business', name?: string | null, url?: string | null, rating?: number | null, photos?: Array<string | null> | null, categories?: Array<{ __typename?: 'Category', title?: string | null } | null> | null } | null> | null };
 
 export type SearchByNameQueryVariables = Exact<{
   name: Scalars['String']['input'];
@@ -478,20 +473,8 @@ export type SearchByNameQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
 
-export type SearchByNameQuery = {
-  __typename?: 'Query';
-  search?: {
-    __typename?: 'Businesses';
-    total?: number | null;
-    business?: Array<{
-      __typename?: 'Business';
-      name?: string | null;
-      url?: string | null;
-      rating?: number | null;
-      photos?: Array<string | null> | null;
-    } | null> | null;
-  } | null;
-};
+
+export type SearchByNameQuery = { __typename?: 'Query', search?: { __typename?: 'Businesses', total?: number | null, business?: Array<{ __typename?: 'Business', name?: string | null, url?: string | null, rating?: number | null, photos?: Array<string | null> | null, categories?: Array<{ __typename?: 'Category', title?: string | null } | null> | null } | null> | null } | null };
 
 export type SearchByCoordsQueryVariables = Exact<{
   longitude: Scalars['Float']['input'];
@@ -500,290 +483,9 @@ export type SearchByCoordsQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
 
-export type SearchByCoordsQuery = {
-  __typename?: 'Query';
-  search?: {
-    __typename?: 'Businesses';
-    total?: number | null;
-    business?: Array<{
-      __typename?: 'Business';
-      name?: string | null;
-      url?: string | null;
-      rating?: number | null;
-      photos?: Array<string | null> | null;
-    } | null> | null;
-  } | null;
-};
 
-export const SearchResultsFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'SearchResults' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Businesses' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'total' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'business' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'rating' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'photos' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<SearchResultsFragment, unknown>;
-export const SearchByNameDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'SearchByName' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'name' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
-          }
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'radius' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } }
-          }
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
-          }
-        }
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'search' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'location' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'name' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'radius' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'radius' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'open_now' },
-                value: { kind: 'BooleanValue', value: true }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'limit' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'sort_by' },
-                value: { kind: 'StringValue', value: 'rating', block: false }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'term' },
-                value: { kind: 'StringValue', value: 'dinner', block: false }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'attributes' },
-                value: {
-                  kind: 'ListValue',
-                  values: [{ kind: 'StringValue', value: 'restaurants_delivery', block: false }]
-                }
-              }
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SearchResults' } }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'SearchResults' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Businesses' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'total' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'business' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'rating' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'photos' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<SearchByNameQuery, SearchByNameQueryVariables>;
-export const SearchByCoordsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'searchByCoords' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'longitude' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } }
-          }
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'latitude' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } }
-          }
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'radius' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } }
-          }
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
-          }
-        }
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'search' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'longitude' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'longitude' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'latitude' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'latitude' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'radius' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'radius' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'open_now' },
-                value: { kind: 'BooleanValue', value: true }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'limit' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'sort_by' },
-                value: { kind: 'StringValue', value: 'rating', block: false }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'term' },
-                value: { kind: 'StringValue', value: 'dinner', block: false }
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'attributes' },
-                value: {
-                  kind: 'ListValue',
-                  values: [{ kind: 'StringValue', value: 'restaurants_delivery', block: false }]
-                }
-              }
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SearchResults' } }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'SearchResults' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Businesses' } },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'total' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'business' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'rating' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'photos' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<SearchByCoordsQuery, SearchByCoordsQueryVariables>;
+export type SearchByCoordsQuery = { __typename?: 'Query', search?: { __typename?: 'Businesses', total?: number | null, business?: Array<{ __typename?: 'Business', name?: string | null, url?: string | null, rating?: number | null, photos?: Array<string | null> | null, categories?: Array<{ __typename?: 'Category', title?: string | null } | null> | null } | null> | null } | null };
+
+export const SearchResultsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SearchResults"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Businesses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"business"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"photos"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<SearchResultsFragment, unknown>;
+export const SearchByNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SearchByName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"radius"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"search"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"location"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}},{"kind":"Argument","name":{"kind":"Name","value":"radius"},"value":{"kind":"Variable","name":{"kind":"Name","value":"radius"}}},{"kind":"Argument","name":{"kind":"Name","value":"open_now"},"value":{"kind":"BooleanValue","value":true}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort_by"},"value":{"kind":"StringValue","value":"rating","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"term"},"value":{"kind":"StringValue","value":"dinner","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"attributes"},"value":{"kind":"ListValue","values":[{"kind":"StringValue","value":"restaurants_delivery","block":false}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SearchResults"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SearchResults"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Businesses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"business"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"photos"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<SearchByNameQuery, SearchByNameQueryVariables>;
+export const SearchByCoordsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"searchByCoords"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"radius"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"search"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"longitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}}},{"kind":"Argument","name":{"kind":"Name","value":"latitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}}},{"kind":"Argument","name":{"kind":"Name","value":"radius"},"value":{"kind":"Variable","name":{"kind":"Name","value":"radius"}}},{"kind":"Argument","name":{"kind":"Name","value":"open_now"},"value":{"kind":"BooleanValue","value":true}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"sort_by"},"value":{"kind":"StringValue","value":"rating","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"term"},"value":{"kind":"StringValue","value":"dinner","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"attributes"},"value":{"kind":"ListValue","values":[{"kind":"StringValue","value":"restaurants_delivery","block":false}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SearchResults"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SearchResults"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Businesses"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"business"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"photos"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]} as unknown as DocumentNode<SearchByCoordsQuery, SearchByCoordsQueryVariables>;
