@@ -9,7 +9,7 @@
     <p class="title-bar-text">{restaurant.title}</p>
     <div class="title-bar-controls">
       <button aria-label="Site" on:click={() => window.open(restaurant.url, '_blank')}> Website </button>
-      <button disabled aria-label="Decorative close"/>
+      <button disabled aria-label="Close" />
     </div>
   </div>
   <img src={restaurant.imageUrl} alt="restaurant" class="w-full overflow-hidden object-cover" />
