@@ -2,9 +2,9 @@ import type { Restaurant } from '../types/restaurant';
 
 export function makeRestaurant(partial?: Partial<Restaurant>): Restaurant {
   return {
-    cuisine: 'Thai',
     imageUrl: 'foo.bar',
     title: 'Thai Fix',
+    url: 'https://foo.bar',
     ...partial
   };
 }

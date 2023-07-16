@@ -1,6 +1,5 @@
 import { writable } from 'svelte/store';
 import type { Restaurant } from '../../../types/restaurant';
-import { getRestaurantOptions } from '$lib/config/restaurantOptions';
 import { removeItem } from '$lib/utils/removeItem/removeItem';
 import { pickNewDuelists } from './pickNewDuelists';
 
@@ -13,19 +12,26 @@ export type DuelState = {
 };
 
 function createDuel() {
-  const all = getRestaurantOptions();
-  // Pick our first two duelists
-  const { first, second, remaining } = pickNewDuelists(all);
-
   const initialState: DuelState = {
-    all,
-    remaining,
-    first,
-    second,
+    all: [],
+    remaining: [],
+    first: { imageUrl: '', title: '', url: '' },
+    second: { imageUrl: '', title: '', url: '' },
     winner: null
   };
 
   const { subscribe, update, set } = writable(initialState);
+
+  function setNewRestaurants(restauarants: Restaurant[]) {
+    const { first, second, remaining } = pickNewDuelists(restauarants);
+    set({
+      all: restauarants,
+      remaining,
+      first,
+      second,
+      winner: null
+    });
+  }
 
   function selectRestaurant(selected: Restaurant) {
     update((state) => {
@@ -59,7 +65,8 @@ function createDuel() {
     select: (selected: Restaurant) => {
       return selectRestaurant(selected);
     },
-    reset: () => set(initialState)
+    reset: () => set(initialState),
+    setNewRestaurants
   };
 }
 

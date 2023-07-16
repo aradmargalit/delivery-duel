@@ -4,16 +4,13 @@
   export let restaurant: Restaurant;
 </script>
 
-<div
-  class="mb-5 flex h-48 w-96 flex-col items-center justify-center rounded-lg border-4 border-blue-500 bg-gray-200 transition hover:scale-105 hover:opacity-80 motion-reduce:transition-none motion-reduce:hover:transform-none"
->
-  <img
-    src={restaurant.imageUrl}
-    alt="restaurant"
-    class="w-full overflow-hidden rounded object-cover"
-  />
-  <div class="flex h-24 flex-col items-center justify-center">
-    <h1 class="font-bold">{restaurant.title}</h1>
-    <p><em>{restaurant.cuisine}</em></p>
+<div class="window mb-5 flex h-48 w-96 flex-col items-center justify-center">
+  <div class="title-bar w-full">
+    <p class="title-bar-text">{restaurant.title}</p>
+    <div class="title-bar-controls">
+      <button aria-label="Site" on:click={() => window.open(restaurant.url, '_blank')}> Website </button>
+      <button disabled aria-label="Decorative close"/>
+    </div>
   </div>
+  <img src={restaurant.imageUrl} alt="restaurant" class="w-full overflow-hidden object-cover" />
 </div>
