@@ -89,6 +89,6 @@ export async function fetchRestaurants(searchParams: URLSearchParams): Promise<R
   }
 
   return {
-     search: { business: [] } 
+    search: { business: [] }
   };
 }

@@ -3,12 +3,11 @@
   import RestaurantCard from '$lib/components/RestaurantCard/index.svelte';
   import type { Restaurant } from '../../../types/restaurant';
 
-  let first: Restaurant = {imageUrl: '', title: ''}
-  let second: Restaurant = {imageUrl: '', title: ''}
+  let first: Restaurant = { imageUrl: '', title: '' };
+  let second: Restaurant = { imageUrl: '', title: '' };
 
   import { duel } from '$lib/stores/duel';
-    import { goto } from '$app/navigation';
-
+  import { goto } from '$app/navigation';
 </script>
 
 <main>
