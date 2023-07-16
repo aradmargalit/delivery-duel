@@ -1,5 +1,5 @@
 import { client } from '../client';
-import { graphql } from '../../../__generated__/gql/gql'
+import { graphql } from '../../../__generated__/gql/gql';
 
 const SEARCH_RADIUS_METERS = 25_000; // about 15 miles
 const RESULT_LIMIT = 12;
@@ -9,12 +9,6 @@ export type Business = {
   url: string;
   rating: number;
   photos: string[];
-};
-
-export type RestaurantResult = {
-  search?: {
-    business?: Business[];
-  } | null;
 };
 
 // fragments are global, and codegen cannot parse types if they are interpolated

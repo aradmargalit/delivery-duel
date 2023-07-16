@@ -21,6 +21,12 @@ In order to generate types, you can run the codegen command.
 YELP_GQL_API_KEY=yourToken npm run codegen
 ```
 
+You may need to silence warnings from some of the generated files if they complain after a `npm run check`.
+```ts
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+```
+
 ## Deployment
 
 Deployed on Vercel on pushes to `main`.

@@ -1,9 +1,5 @@
 import type { PageServerLoad } from './$types';
-import {
-  fetchRestaurants,
-  type Business,
-  type RestaurantResult
-} from '$lib/gql/queries/searchRestaurants';
+import { fetchRestaurants, type Business } from '$lib/gql/queries/searchRestaurants';
 import { redirect } from '@sveltejs/kit';
 import type { Restaurant } from '../../types/restaurant';
 import { businessToRestaurant } from '$lib/utils/businessToRestaurant';
@@ -28,8 +24,9 @@ export const load = (async ({ url }) => {
   }
 
   try {
-    const result: RestaurantResult = await fetchRestaurants(searchParams);
-    const businesses = result.search.business;
+    const result = await fetchRestaurants(searchParams);
+    const businesses: Business[] =
+      result?.search?.business?.filter((x): x is Business => Boolean(x)) ?? [];
     const restaurants: Restaurant[] = businesses.map(businessToRestaurant);
     return { restaurants };
   } catch (e) {

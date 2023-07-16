@@ -1,4 +1,3 @@
-
 import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
@@ -7,19 +6,25 @@ const config: CodegenConfig = {
     {
       'https://api.yelp.com/v3/graphql': {
         headers: {
-          Authorization: `Bearer ${process.env.YELP_GQL_API_KEY}`,
-        },
+          Authorization: `Bearer ${process.env.YELP_GQL_API_KEY}`
+        }
+      }
+    }
+  ],
+  documents: 'src/lib/gql/**/*.ts',
+  config: {
+    useTypeImports: true
+  },
+  generates: {
+    'src/__generated__/gql/': {
+      preset: 'client',
+      presetConfig: {
+        // TODO: re-enable
+        fragmentMasking: false,
       },
     },
-  ],
-  documents: "src/lib/gql/**/*.ts",
-  generates: {
-    "src/__generated__/gql/": {
-      preset: "client",
-      plugins: []
-    },
-    "./graphql.schema.json": {
-      plugins: ["introspection"]
+    './graphql.schema.json': {
+      plugins: ['introspection']
     },
     './schema.graphql': {
       plugins: ['schema-ast']
