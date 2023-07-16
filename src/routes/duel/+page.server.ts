@@ -28,9 +28,26 @@ export const load = (async ({ url }) => {
     const businesses: Business[] =
       result?.search?.business?.filter((x): x is Business => Boolean(x)) ?? [];
     const restaurants: Restaurant[] = businesses.map(businessToRestaurant);
+
+    if (restaurants.length < 2) {
+      // can't proceed with fewer than two options
+      throw new NoMatchesException();
+    }
     return { restaurants };
   } catch (e) {
+    if (e instanceof NoMatchesException) {
+      // cannot throw redirect in a try block or it gets caught
+      throw redirect(307, '/no-matches-found');
+    }
+
     console.error((e as Error).message);
     return { restaurants: [] };
   }
 }) satisfies PageServerLoad;
+
+class NoMatchesException extends Error {
+  constructor(message?: string) {
+    super(message);
+    console.error('no matches found');
+  }
+}

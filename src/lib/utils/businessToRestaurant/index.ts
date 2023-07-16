@@ -6,6 +6,6 @@ export function businessToRestaurant(business: Business): Restaurant {
     title: business.name,
     imageUrl: business.photos.length ? business.photos[0] : '',
     url: business.url,
-    tags: business.categories.map(c => c.title),
+    tags: business.categories.map((c) => c.title)
   };
 }

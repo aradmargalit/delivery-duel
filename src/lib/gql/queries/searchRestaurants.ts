@@ -1,7 +1,8 @@
 import { client } from '../client';
 import { graphql } from '../../../__generated__/gql/gql';
+import { milesToMeters } from '$lib/utils/converters/milesToMeters';
+import { SEARCH_RADIUS_MILES_MAX } from '$lib/config/searchConfig';
 
-const SEARCH_RADIUS_METERS = 25_000; // about 15 miles
 const RESULT_LIMIT = 12;
 
 export type Business = {
@@ -9,7 +10,7 @@ export type Business = {
   url: string;
   rating: number;
   photos: string[];
-  categories: {title: string}[]
+  categories: { title: string }[];
 };
 
 // fragments are global, and codegen cannot parse types if they are interpolated
@@ -64,9 +65,15 @@ const searchByCoords = graphql(`
 `);
 
 export async function fetchRestaurants(searchParams: URLSearchParams) {
+  // Default to and cap at our max to prevent API abuse
+  const radius = Math.min(
+    parseInt(searchParams.get('radius') ?? SEARCH_RADIUS_MILES_MAX.toString(), 10),
+    SEARCH_RADIUS_MILES_MAX
+  );
+
   const baseVariables = {
     limit: RESULT_LIMIT,
-    radius: SEARCH_RADIUS_METERS
+    radius: milesToMeters(radius)
   };
 
   if (searchParams.has('manualLocation')) {
