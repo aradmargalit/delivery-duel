@@ -16,7 +16,6 @@
     {:else}
       <p>Winner!</p>
       <RestaurantCard restaurant={$duel.winner} />
-      <button on:click={() => goto('/')}> Play Again? </button>
     {/if}
     <button on:click={() => goto('/')}>Go Home</button>
   </div>
