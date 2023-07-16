@@ -19,7 +19,7 @@
 
 <main>
   <div class="flex h-full w-full flex-col items-center justify-center">
-    <h1>Delivery Duel</h1>
+    <h1 style="font-size: 3rem">Delivery Duel</h1>
     <p>Helps you decide where dinner comes from.</p>
     <div class="mt-5 w-full md:w-1/4">
       <fieldset>
