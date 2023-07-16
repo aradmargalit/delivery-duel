@@ -4,12 +4,36 @@ import { client } from '../client';
 const SEARCH_RADIUS_METERS = 25_000; // about 15 miles
 const RESULT_LIMIT = 12;
 
+export type Business = {
+  name: string;
+  url: string;
+  rating: number;
+  photos: string[];
+};
+
+export type RestaurantResult = {
+  search: {
+    business: Business[];
+  };
+};
+
 const searchByName = gql`
   query searchByName($name: String!, $radius: Float!, $limit: Int!) {
-    search(location: $name, radius: $radius, open_now: true, limit: $limit) {
+    search(
+      location: $name
+      radius: $radius
+      open_now: true
+      limit: $limit
+      sort_by: "rating"
+      term: "dinner"
+      attributes: ["restaurants_delivery"]
+    ) {
       total
       business {
         name
+        url
+        rating
+        photos
       }
     }
   }
@@ -23,16 +47,22 @@ const searchByCoords = gql`
       radius: $radius
       open_now: true
       limit: $limit
+      sort_by: "rating"
+      term: "dinner"
+      attributes: ["restaurants_delivery"]
     ) {
       total
       business {
         name
+        url
+        rating
+        photos
       }
     }
   }
 `;
 
-export async function fetchRestaurants(searchParams: URLSearchParams) {
+export async function fetchRestaurants(searchParams: URLSearchParams): Promise<RestaurantResult> {
   const baseVariables = {
     limit: RESULT_LIMIT,
     radius: SEARCH_RADIUS_METERS
@@ -45,13 +75,20 @@ export async function fetchRestaurants(searchParams: URLSearchParams) {
     } catch (e) {
       console.error(e);
     }
-    return;
   }
 
-  const variables = { ...baseVariables, latitude: searchParams.get('lat'), longitude: searchParams.get('lon') };
+  const variables = {
+    ...baseVariables,
+    latitude: searchParams.get('lat'),
+    longitude: searchParams.get('lon')
+  };
   try {
     return client.request(searchByCoords, variables);
   } catch (e) {
     console.error(e);
   }
+
+  return {
+     search: { business: [] } 
+  };
 }

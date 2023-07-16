@@ -14,7 +14,4 @@
     </div>
   </div>
   <img src={restaurant.imageUrl} alt="restaurant" class="w-full overflow-hidden object-cover" />
-  <div class="flex h-24 flex-col items-center justify-center">
-    <p><em>{restaurant.cuisine}</em></p>
-  </div>
 </div>
