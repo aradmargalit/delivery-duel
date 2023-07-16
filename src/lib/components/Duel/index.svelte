@@ -4,6 +4,8 @@
 
   import { duel } from '$lib/stores/duel';
   import { goto } from '$app/navigation';
+
+  $: progress = $duel.all.length - $duel.remaining.length + 1;
 </script>
 
 <main>
@@ -13,6 +15,10 @@
       <RestaurantChoice restaurant={$duel.first} />
       <p class="mb-5">vs ...</p>
       <RestaurantChoice restaurant={$duel.second} />
+      <div class="mt-5 mb-5 field-row">
+        <label for="progress">Progress<br/> ({progress} / {$duel.all.length})</label>
+        <input id="progress" disabled type="range" min={0} max={$duel.all.length} value={progress} />
+      </div>
     {:else}
       <p>Winner!</p>
       <RestaurantCard restaurant={$duel.winner} />
