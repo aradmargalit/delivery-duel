@@ -2,7 +2,11 @@
 
 Please, somebody, help us decide where to eat!
 
-SvelteKit + TailwindCSS app to learn the framework.
+## Tech
+- [SvelteKit](https://kit.svelte.dev/) for UI layer, routing, app framework
+- [98.css](https://jdan.github.io/98.css/) for the Windows 98 theme
+- [Tailwind CSS](https://tailwindcss.com/) for other styles
+- [Yelp's GraphQL API](https://docs.developer.yelp.com/docs/graphql-intro) for fetching nearby restaurants
 
 ## Development
 
