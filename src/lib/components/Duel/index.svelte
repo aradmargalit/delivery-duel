@@ -30,6 +30,6 @@
       <p>Winner!</p>
       <RestaurantCard restaurant={$duel.winner} />
     {/if}
-    <button on:click={() => goto('/')}>Go Home</button>
+    <a href="/">Go Home</a>
   </div>
 </main>

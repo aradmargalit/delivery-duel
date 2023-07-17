@@ -10,5 +10,5 @@
       href="https://github.com/aradmargalit/delivery-duel/issues">GitHub</a
     >
   </p>
-  <button on:click={() => goto('/')}>Go Home</button>
+  <a href="/">Go Home</a>
 </main>
