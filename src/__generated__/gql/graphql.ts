@@ -470,6 +470,7 @@ export type SearchResultsFragment = {
     rating?: number | null;
     photos?: Array<string | null> | null;
     categories?: Array<{ __typename?: 'Category'; title?: string | null } | null> | null;
+    location?: { __typename?: 'Location'; address1?: string | null; city?: string | null } | null;
   } | null> | null;
 };
 
@@ -491,6 +492,7 @@ export type SearchByNameQuery = {
       rating?: number | null;
       photos?: Array<string | null> | null;
       categories?: Array<{ __typename?: 'Category'; title?: string | null } | null> | null;
+      location?: { __typename?: 'Location'; address1?: string | null; city?: string | null } | null;
     } | null> | null;
   } | null;
 };
@@ -514,6 +516,7 @@ export type SearchByCoordsQuery = {
       rating?: number | null;
       photos?: Array<string | null> | null;
       categories?: Array<{ __typename?: 'Category'; title?: string | null } | null> | null;
+      location?: { __typename?: 'Location'; address1?: string | null; city?: string | null } | null;
     } | null> | null;
   } | null;
 };
@@ -545,6 +548,17 @@ export const SearchResultsFragmentDoc = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }]
+                  }
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'location' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'address1' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'city' } }
+                    ]
                   }
                 }
               ]
@@ -668,6 +682,17 @@ export const SearchByNameDocument = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }]
+                  }
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'location' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'address1' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'city' } }
+                    ]
                   }
                 }
               ]
@@ -804,6 +829,17 @@ export const SearchByCoordsDocument = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }]
+                  }
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'location' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'address1' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'city' } }
+                    ]
                   }
                 }
               ]

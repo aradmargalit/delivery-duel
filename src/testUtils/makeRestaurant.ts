@@ -6,6 +6,7 @@ export function makeRestaurant(partial?: Partial<Restaurant>): Restaurant {
     title: 'Thai Fix',
     url: 'https://foo.bar',
     tags: ['Thai'],
+    location: 'Home sweet home',
     ...partial
   };
 }

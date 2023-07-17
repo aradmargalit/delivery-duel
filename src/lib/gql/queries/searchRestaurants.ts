@@ -11,6 +11,10 @@ export type Business = {
   rating: number;
   photos: string[];
   categories: { title: string }[];
+  location: {
+    address1: string;
+    city: string;
+  };
 };
 
 // fragments are global, and codegen cannot parse types if they are interpolated
@@ -26,6 +30,10 @@ const searchResultsFragment = graphql(`
       photos
       categories {
         title
+      }
+      location {
+        address1
+        city
       }
     }
   }

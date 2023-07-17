@@ -3,6 +3,7 @@
 Please, somebody, help us decide where to eat!
 
 ## Tech
+
 - [SvelteKit](https://kit.svelte.dev/) for UI layer, routing, app framework
 - [98.css](https://jdan.github.io/98.css/) for the Windows 98 theme
 - [Tailwind CSS](https://tailwindcss.com/) for other styles

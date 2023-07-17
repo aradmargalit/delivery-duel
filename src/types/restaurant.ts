@@ -3,4 +3,5 @@ export type Restaurant = {
   imageUrl: string;
   url: string;
   tags: string[];
+  location: string;
 };

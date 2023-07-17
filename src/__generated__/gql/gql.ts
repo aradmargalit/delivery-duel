@@ -13,7 +13,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n    }\n  }\n':
+  '\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n      location {\n        address1\n        city\n      }\n    }\n  }\n':
     types.SearchResultsFragmentDoc,
   '\n  query SearchByName($name: String!, $radius: Float!, $limit: Int!) {\n    search(\n      location: $name\n      radius: $radius\n      open_now: true\n      limit: $limit\n      sort_by: "rating"\n      term: "dinner"\n      attributes: ["restaurants_delivery"]\n    ) {\n      ...SearchResults\n    }\n  }\n':
     types.SearchByNameDocument,
@@ -39,8 +39,8 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n    }\n  }\n'
-): (typeof documents)['\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n    }\n  }\n'];
+  source: '\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n      location {\n        address1\n        city\n      }\n    }\n  }\n'
+): (typeof documents)['\n  fragment SearchResults on Businesses {\n    total\n    business {\n      name\n      url\n      rating\n      photos\n      categories {\n        title\n      }\n      location {\n        address1\n        city\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -15,7 +15,8 @@
     </div>
   </div>
   <img src={restaurant.imageUrl} alt="restaurant" class="w-full overflow-hidden object-cover" />
-  <div class="flex items-center justify-center">
+  <div class="flex flex-col items-center justify-center">
     <p><em>{restaurant.tags.join(', ')}</em></p>
+    <p><em>{restaurant.location}</em></p>
   </div>
 </div>

@@ -6,7 +6,16 @@
   font-family: 'Pixelated MS Sans Serif', Arial;
 }
 
-.title-bar, .window, button, input, label, option, select, table, textarea, ul.tree-view {
+.title-bar,
+.window,
+button,
+input,
+label,
+option,
+select,
+table,
+textarea,
+ul.tree-view {
   font-size: 1rem !important;
 }
 
