@@ -3,8 +3,7 @@
   import RestaurantCard from '$lib/components/RestaurantCard/index.svelte';
 
   import { duel } from '$lib/stores/duel';
-  import { goto } from '$app/navigation';
-
+  import sword from '$lib/assets/sword.png';
   $: progress = $duel.all.length - $duel.remaining.length + 1;
 </script>
 
@@ -13,7 +12,11 @@
     {#if !$duel.winner}
       <p class="mb-5">Choose which looks better...</p>
       <RestaurantChoice restaurant={$duel.first} />
-      <p class="mb-5">vs ...</p>
+      <div class="flex justify-center">
+        <img alt="a sword" src={sword} class="h-7" />
+        <p class="mb-5">vs ...</p>
+      </div>
+
       <RestaurantChoice restaurant={$duel.second} />
       <div class="field-row mb-5 mt-5">
         <label for="progress">Progress<br /> ({progress} / {$duel.all.length})</label>
