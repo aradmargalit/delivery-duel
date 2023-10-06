@@ -3,18 +3,7 @@ import { fetchRestaurants, type Business } from '$lib/gql/queries/searchRestaura
 import { redirect } from '@sveltejs/kit';
 import type { Restaurant } from '../../types/restaurant';
 import { businessToRestaurant } from '$lib/utils/businessToRestaurant';
-
-function searchParamsAreValid(searchParams: URLSearchParams): boolean {
-  if (searchParams.has('manualLocation')) {
-    return true;
-  }
-
-  if (searchParams.has('lat') && searchParams.has('lon')) {
-    return true;
-  }
-
-  return false;
-}
+import { searchParamsAreValid } from './searchParamsAreValid';
 
 export const load = (async ({ url }) => {
   const searchParams = url.searchParams;
